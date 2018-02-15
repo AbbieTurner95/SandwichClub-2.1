@@ -11,6 +11,8 @@ import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
 
+import java.util.List;
+
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
@@ -69,22 +71,27 @@ public class DetailActivity extends AppCompatActivity {
     private void populateUI(Sandwich sandwich) {
 
         place_of_origin_tv.setText(sandwich.getPlaceOfOrigin());
+        description_tv.setText(sandwich.getDescription());
+        ingredients_tv.setText(getStringFromList(sandwich.getIngredients()));
+        also_known_as_tv.setText(getStringFromList(sandwich.getAlsoKnownAs()));
+
         if (sandwich.getPlaceOfOrigin().equals("")){
             place_of_origin_tv.setText(R.string.unknown_origin);
-        }
-
-        description_tv.setText(sandwich.getDescription());
-
-        for(int i=0; i < sandwich.getIngredients().size(); i++){
-            ingredients_tv.setText(sandwich.getIngredients().get(i));
-        }
-
-        for(int i=0; i<sandwich.getAlsoKnownAs().size(); i++) {
-            also_known_as_tv.setText(sandwich.getIngredients().get(i));
         }
 
         if (sandwich.getAlsoKnownAs().size() == 0){
             also_known_as_tv.setText(R.string.unknown_string);
         }
+    }
+
+    public String getStringFromList(List<String> list) {
+        StringBuilder builder = new StringBuilder();
+        for (int i=0; i < list.size(); i++) {
+            builder.append(list.get(i));
+            if (i != list.size()-1) {
+                builder.append(", ");
+            }
+        }
+        return builder.toString();
     }
 }
