@@ -70,7 +70,7 @@ public class DetailActivity extends AppCompatActivity {
 
         place_of_origin_tv.setText(sandwich.getPlaceOfOrigin());
         if (sandwich.getPlaceOfOrigin().equals("")){
-            place_of_origin_tv.setText("Unknown place of origin");
+            place_of_origin_tv.setText(R.string.unknown_origin);
         }
 
         description_tv.setText(sandwich.getDescription());
@@ -84,7 +84,7 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         if (sandwich.getAlsoKnownAs().size() == 0){
-            also_known_as_tv.setText("Unknown other names");
+            also_known_as_tv.setText(R.string.unknown_string);
         }
     }
 }
